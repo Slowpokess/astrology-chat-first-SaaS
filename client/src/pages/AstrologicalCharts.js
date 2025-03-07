@@ -29,25 +29,8 @@ const AstrologicalCharts = () => {
     { id: 'year', name: '365 Days' }
   ];
 
-  const loadChartData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const result = await generateAstrologicalChart(selectedCrypto, timeframe);
-      setChartData(result.chartData);
-      setAstrologicalFactors(result.astrologicalFactors);
-    } catch (error) {
-      console.error('Error loading chart data:', error);
-    } finally {
-      setLoading(false);
-    }
-  }, [selectedCrypto, timeframe]);
-
-  useEffect(() => {
-    loadChartData();
-  }, [loadChartData]);
-
-  // Функция для генерации случайных данных (для демонстрации)
-  const getRandomData = () => {
+  // Оборачиваем getRandomData в useCallback
+  const getRandomData = useCallback(() => {
     const data = [];
     const days = timeframe === 'week' ? 7 : 
                  timeframe === 'month' ? 30 : 
@@ -77,36 +60,47 @@ const AstrologicalCharts = () => {
     }
     
     return data;
-  };
+  }, [timeframe]);
 
-  // Имитируем получение данных, если chartData не установлен с сервера
-  if (!chartData && !loading) {
-    const randomData = getRandomData();
-    setChartData(randomData);
-    
-    // Генерируем случайные "астрологические факторы"
-    const randomFactors = [
-      {
-        name: "Лунная ретикуляция",
-        description: "Луна в третьем доме создает идеальную энергетическую матрицу для роста цены.",
-        impact: "strongly positive",
-        probability: 78
-      },
-      {
-        name: "Марсианский разворот",
-        description: "Марс движется ретроградно, что указывает на потенциальную волатильность.",
-        impact: "negative",
-        probability: 65
-      },
-      {
-        name: "Венерианская конвергенция",
-        description: "Венера формирует трин с Юпитером, создавая благоприятный аспект для инвесторов.",
-        impact: "positive",
-        probability: 82
-      }
-    ];
-    setAstrologicalFactors(randomFactors);
-  }
+  // Теперь loadChartData может корректно включить getRandomData в зависимости
+  const loadChartData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const result = await generateAstrologicalChart(selectedCrypto, timeframe);
+      setChartData(result.chartData);
+      setAstrologicalFactors(result.astrologicalFactors);
+    } catch (error) {
+      console.error('Error loading chart data:', error);
+      // Используем заглушку в случае ошибки
+      setChartData(getRandomData());
+      setAstrologicalFactors([
+        {
+          name: "Лунная ретикуляция",
+          description: "Луна в третьем доме создает идеальную энергетическую матрицу для роста цены.",
+          impact: "strongly positive",
+          probability: 78
+        },
+        {
+          name: "Марсианский разворот",
+          description: "Марс движется ретроградно, что указывает на потенциальную волатильность.",
+          impact: "negative",
+          probability: 65
+        },
+        {
+          name: "Венерианская конвергенция",
+          description: "Венера формирует трин с Юпитером, создавая благоприятный аспект для инвесторов.",
+          impact: "positive",
+          probability: 82
+        }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedCrypto, timeframe, getRandomData]);
+
+  useEffect(() => {
+    loadChartData();
+  }, [loadChartData]);
 
   const getPlanetIcon = (factor) => {
     if (factor.name.toLowerCase().includes('лун')) return <MoonIcon className="h-6 w-6 text-blue-400" />;

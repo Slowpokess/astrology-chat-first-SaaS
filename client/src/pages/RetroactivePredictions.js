@@ -1,7 +1,6 @@
 // pages/RetroactivePredictions.js
 import React, { useState, useEffect } from 'react';
 import { generateRetroGenius, getCryptoPrices } from '../services/apiService';
-import { LightBulbIcon } from '@heroicons/react/24/solid';
 
 const RetroactivePredictions = () => {
   const [selectedCrypto, setSelectedCrypto] = useState('bitcoin');
@@ -153,7 +152,9 @@ const RetroactivePredictions = () => {
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {retroPost.indicators.map((indicator, index) => (
                     <li key={index} className="flex items-center text-gray-300">
-                      <LightBulbIcon className="h-4 w-4 text-yellow-500 mr-2" />
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-yellow-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                      </svg>
                       {indicator}
                     </li>
                   ))}

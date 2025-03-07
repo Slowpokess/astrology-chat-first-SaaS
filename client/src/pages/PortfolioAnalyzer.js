@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { analyzePortfolio } from '../services/apiService';
 
 const PortfolioAnalyzer = () => {
   const [portfolio, setPortfolio] = useState([
@@ -24,19 +23,22 @@ const PortfolioAnalyzer = () => {
     setPortfolio(newPortfolio);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     
-    try {
-      const filteredPortfolio = portfolio.filter(item => item.token && item.amount && item.buyPrice);
-      const analysisResult = await analyzePortfolio(filteredPortfolio);
-      setAnalysis(analysisResult);
-    } catch (error) {
-      console.error('Error analyzing portfolio:', error);
-    } finally {
+    // Имитация API-запроса
+    setTimeout(() => {
+      setAnalysis({
+        overallRoast: "Congratulations! Your portfolio is a masterclass in 'buy high, sell never' philosophy. If financial self-sabotage was an Olympic sport, you'd be taking home the gold. The beautiful mix of overhyped L1s, defunct DeFi protocols, and memecoins that even dogs wouldn't recognize shows a remarkable commitment to ignoring all conventional wisdom.",
+        tokenAnalysis: portfolio.map(item => ({
+          name: item.token || "Unknown Token",
+          roast: item.token ? `Ah yes, ${item.token}, the perfect choice for those who enjoy watching their money evaporate while insisting "it's just a correction." Buying at $${item.buyPrice} was especially inspired timing - right at the peak of 'everyone's talking about it on TikTok' phase.` : "You've invested in something so obscure even our AI can't mock it properly. Achievement unlocked!"
+        })),
+        alternateUniverse: "In an alternate universe where you did the exact opposite of every investment decision, you'd be lounging on your private island, sipping cocktails served by robots you bought with your spare change, while checking how many more zeroes your net worth gained today. Meanwhile, in this universe, you're eating instant ramen while convincing yourself that diamond hands eventually pay off."
+      });
       setLoading(false);
-    }
+    }, 2000);
   };
 
   return (
@@ -76,7 +78,6 @@ const PortfolioAnalyzer = () => {
                       onChange={(e) => handleTokenChange(index, 'token', e.target.value)}
                       placeholder="BTC"
                       className="w-full bg-gray-600 border border-gray-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      required
                     />
                   </div>
                   
@@ -92,7 +93,6 @@ const PortfolioAnalyzer = () => {
                       min="0"
                       placeholder="0.5"
                       className="w-full bg-gray-600 border border-gray-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      required
                     />
                   </div>
                   
@@ -108,7 +108,6 @@ const PortfolioAnalyzer = () => {
                       min="0"
                       placeholder="30000"
                       className="w-full bg-gray-600 border border-gray-500 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      required
                     />
                   </div>
                 </div>

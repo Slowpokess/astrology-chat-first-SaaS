@@ -1,10 +1,10 @@
+// components/PredictionCard.js
 import React from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/solid';
 
 const PredictionCard = ({ prediction }) => {
   // Определяем стиль в зависимости от уверенности прогноза
   // В нашей системе: чем выше уверенность, тем менее надежен прогноз
-  const confidenceLevel = prediction.confidence; // от 0 до 100
+  const confidenceLevel = prediction?.confidence || 85; // от 0 до 100
   
   // Определяем цвет карточки в зависимости от уверенности
   const getBgColor = () => {
@@ -26,32 +26,31 @@ const PredictionCard = ({ prediction }) => {
     <div className={`prediction-card border-2 rounded-lg p-6 ${getBgColor()} transition-all hover:shadow-lg`}>
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-xl font-bold">{prediction.name} ({prediction.symbol.toUpperCase()})</h3>
-          <p className="text-gray-400">Current: ${prediction.currentPrice.toLocaleString()}</p>
+          <h3 className="text-xl font-bold">{prediction?.cryptoName || 'Bitcoin'} ({(prediction?.cryptoSymbol || 'BTC').toUpperCase()})</h3>
+          <p className="text-gray-400">Current: ${(prediction?.currentPrice || 0).toLocaleString()}</p>
         </div>
         <div className={`confidence-badge px-3 py-1 rounded-full text-xs font-bold
-                        ${confidenceLevel > 75 ? 'bg-red-600 text-white' : 
-                          confidenceLevel > 50 ? 'bg-yellow-600 text-white' : 
-                          'bg-green-600 text-white'}`}>
+                      ${confidenceLevel > 75 ? 'bg-red-600 text-white' : 
+                        confidenceLevel > 50 ? 'bg-yellow-600 text-white' : 
+                        'bg-green-600 text-white'}`}>
           {getConfidenceText()}
         </div>
       </div>
 
       <p className="prediction-text text-lg mb-4">
-        {prediction.sarcasticPrediction}
+        {prediction?.sarcasticPrediction || "Based on our extremely sophisticated analysis involving a dartboard and a coin flip, we predict this cryptocurrency will either go up, down, or possibly stay the same. Our confidence is inversely proportional to our accuracy."}
       </p>
 
       <div className="analysis-section text-sm bg-black bg-opacity-30 p-4 rounded-lg">
         <h4 className="font-bold mb-2 flex items-center">
-          <ExclamationCircleIcon className="h-5 w-5 mr-1 text-yellow-500" />
           Expert Analysis:
         </h4>
-        <p className="text-gray-300">{prediction.analysis}</p>
+        <p className="text-gray-300">{prediction?.analysis || "Technical indicators suggest that drawing random lines on charts is just as effective as most 'expert' analyses."}</p>
       </div>
 
       <div className="mt-4 flex justify-between items-center">
         <div className="text-xs text-gray-500">
-          Generated: {new Date(prediction.timestamp).toLocaleString()}
+          Generated: {prediction?.timestamp ? new Date(prediction.timestamp).toLocaleString() : new Date().toLocaleString()}
         </div>
         <button className="text-xs text-purple-400 hover:text-purple-300 transition">
           Share this wisdom

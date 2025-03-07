@@ -1,8 +1,9 @@
+// client/src/services/apiService.js
 import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
-// Получение данных о криптовалютах (переименуйте функцию для совместимости)
+// Получение данных о криптовалютах
 export const fetchLatestCryptoData = async (start = 0, limit = 10) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/predictions/crypto-data`, {
@@ -15,7 +16,7 @@ export const fetchLatestCryptoData = async (start = 0, limit = 10) => {
   }
 };
 
-// Добавьте для совместимости с RetroactivePredictions.js
+// Обеспечиваем обратную совместимость
 export const getCryptoPrices = fetchLatestCryptoData;
 
 // Генерация сатирического предсказания
@@ -72,6 +73,19 @@ export const getTrustIndex = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching trust index:', error);
+    throw error;
+  }
+};
+
+// Получение истории индекса доверия
+export const getTrustIndexHistory = async (days = 30) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/trust-index/history`, {
+      params: { days }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching trust index history:', error);
     throw error;
   }
 };
