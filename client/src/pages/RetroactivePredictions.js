@@ -45,16 +45,16 @@ const RetroactivePredictions = () => {
       // Заглушка на случай ошибки
       setRetroPost({
         date: "15-01-2021",
-        title: `${cryptoId.charAt(0).toUpperCase() + cryptoId.slice(1)} - Неизбежный успех!`,
-        content: `После многочасового анализа могу с уверенностью заявить: ${cryptoId.charAt(0).toUpperCase() + cryptoId.slice(1)} находится на пороге грандиозного роста! Мои уникальные индикаторы показывают явное формирование паттерна "Двойной ракеты с гиперускорением". ЗАПОМНИТЕ ЭТО СООБЩЕНИЕ - через год вы будете жалеть, что не купили сейчас!`,
+        title: `${cryptoId.charAt(0).toUpperCase() + cryptoId.slice(1)} - Inevitable Success!`,
+        content: `After hours of analysis, I can confidently declare: ${cryptoId.charAt(0).toUpperCase() + cryptoId.slice(1)} is on the verge of tremendous growth! My unique indicators show a clear formation of the "Double Rocket with Hyper-acceleration" pattern. REMEMBER THIS MESSAGE - in a year you'll regret not buying now!`,
         indicators: [
-          "Пятикратная конвергенция Фибоначчи", 
-          "Индекс лунного притяжения", 
-          "Тройное дно с отскоком ждуна", 
-          "Пересечение линии Мавроди"
+          "Fivefold Fibonacci Convergence", 
+          "Lunar Attraction Index", 
+          "Triple Bottom with Waiting Guy Bounce", 
+          "Mavrodi Line Crossing"
         ],
-        signature: "КриптоГуру9000, Предсказатель Богатства™",
-        followUp: "Примечание: этот 'гениальный' прогноз создан задним числом. Предсказывать прошлое - наша суперспособность!"
+        signature: "CryptoGuru9000, Wealth Predictor™",
+        followUp: "Note: this 'genius' forecast was created in hindsight. Predicting the past is our superpower!"
       });
     } finally {
       setLoading(false);
@@ -94,13 +94,13 @@ const RetroactivePredictions = () => {
 
   return (
     <div className="retro-predictions">
-      <h1 className="text-3xl font-bold mb-6 text-purple-400">Ретроактивный "Гений"</h1>
+      <h1 className="text-3xl font-bold mb-6 text-purple-400">Retroactive "Genius"</h1>
       <p className="text-lg mb-8 text-gray-300">
-        Взгляд в "прошлое" на наши якобы идеальные предсказания, которые мы, конечно же, сделали вовремя
+        A look "back" at our supposedly perfect predictions, which we surely made at the right time
       </p>
 
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-400 mb-2">Выберите криптовалюту для ретроактивного предсказания:</label>
+        <label className="block text-sm font-medium text-gray-400 mb-2">Choose a cryptocurrency for retroactive prediction:</label>
         <select 
           value={selectedCrypto}
           onChange={(e) => setSelectedCrypto(e.target.value)}
@@ -116,8 +116,8 @@ const RetroactivePredictions = () => {
 
       {loading ? (
         <div className="text-center py-12 bg-gray-800 rounded-lg">
-          <p className="text-xl text-gray-400">Изготавливаем предсказание из прошлого...</p>
-          <p className="text-sm text-gray-500 mt-2">Требуется время, чтобы правильно состарить бумагу</p>
+          <p className="text-xl text-gray-400">Creating prediction from the past...</p>
+          <p className="text-sm text-gray-500 mt-2">It takes time to properly age the paper</p>
         </div>
       ) : retroPost ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -127,14 +127,14 @@ const RetroactivePredictions = () => {
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="text-sm text-gray-500 mb-1">
-                      Опубликовано: {retroPost.date}
+                      Published: {retroPost.date}
                     </div>
                     <h2 className="text-2xl font-bold text-yellow-400">
                       {retroPost.title}
                     </h2>
                   </div>
                   <div className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded rotate-12">
-                    СРОЧНО!
+                    URGENT!
                   </div>
                 </div>
               </div>
@@ -147,7 +147,7 @@ const RetroactivePredictions = () => {
               
               <div className="retro-post-indicators mb-6">
                 <h3 className="text-sm font-bold uppercase text-gray-500 mb-2">
-                  Технические индикаторы:
+                  Technical Indicators:
                 </h3>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {retroPost.indicators.map((indicator, index) => (
@@ -178,43 +178,43 @@ const RetroactivePredictions = () => {
           <div className="explanation-sidebar">
             <div className="bg-gray-800 p-6 rounded-lg mb-6">
               <h3 className="text-xl font-bold mb-4 text-purple-300">
-                О "гениальных" предсказаниях
+                About "Genius" Predictions
               </h3>
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Каждый "эксперт" криптовалютного рынка выглядит гением, если показывать 
-                  только его удачные предсказания и игнорировать сотни ошибочных.
+                  Every cryptocurrency market "expert" looks like a genius if you only show 
+                  their successful predictions and ignore hundreds of incorrect ones.
                 </p>
                 <p>
-                  Наш ретроактивный "гений" иллюстрирует, как легко выглядеть провидцем, 
-                  когда ты делаешь предсказания задним числом.
+                  Our retroactive "genius" illustrates how easy it is to look like a visionary 
+                  when you make predictions in hindsight.
                 </p>
                 <p>
-                  Помните: даже сломанные часы дважды в день показывают правильное время,
-                  а случайный "эксперт" иногда случайно оказывается прав.
+                  Remember: even a broken clock is right twice a day,
+                  and a random "expert" is occasionally accidentally right.
                 </p>
               </div>
             </div>
             
             <div className="bg-gray-800 p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4 text-purple-300">
-                Как стать "экспертом"
+                How to Become an "Expert"
               </h3>
               <ol className="space-y-3 text-gray-300 list-decimal list-inside">
-                <li>Делайте много разных предсказаний</li>
-                <li>Громко напоминайте о тех, что сбылись</li>
-                <li>Никогда не упоминайте о неудачных</li>
-                <li>Используйте сложные термины и индикаторы</li>
-                <li>Говорите с абсолютной уверенностью</li>
-                <li>Если ошиблись, скажите "рынок был манипулирован"</li>
+                <li>Make many different predictions</li>
+                <li>Loudly remind everyone about those that came true</li>
+                <li>Never mention the unsuccessful ones</li>
+                <li>Use complex terms and indicators</li>
+                <li>Speak with absolute confidence</li>
+                <li>If you're wrong, say "the market was manipulated"</li>
               </ol>
               
               <div className="mt-6 text-center">
                 <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition">
-                  Сгенерировать собственный прогноз из прошлого
+                  Generate your own forecast from the past
                 </button>
                 <p className="text-xs text-gray-500 mt-2">
-                  И станьте ретроактивным криптогением всего за 50 $ASS
+                  And become a retroactive crypto genius for just 50 $ASS
                 </p>
               </div>
             </div>
@@ -222,13 +222,13 @@ const RetroactivePredictions = () => {
         </div>
       ) : (
         <div className="text-center py-12 bg-gray-800 rounded-lg">
-          <p className="text-xl text-gray-400">Выберите криптовалюту для генерации ретроактивного "гения"</p>
-          <p className="text-sm text-gray-500 mt-2">И мы покажем, как легко быть провидцем задним числом</p>
+          <p className="text-xl text-gray-400">Choose a cryptocurrency to generate a retroactive "genius"</p>
+          <p className="text-sm text-gray-500 mt-2">And we'll show how easy it is to be a seer in hindsight</p>
         </div>
       )}
       
       <div className="mt-10 bg-gray-800 p-6 rounded-lg">
-        <h2 className="text-xl font-bold mb-4 text-purple-300">Зал славы ретроактивных "гениев"</h2>
+        <h2 className="text-xl font-bold mb-4 text-purple-300">Hall of Fame of Retroactive "Geniuses"</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[1, 2, 3].map((index) => (
@@ -240,13 +240,13 @@ const RetroactivePredictions = () => {
                 </div>
               </div>
               <h3 className="font-bold text-white mb-1">
-                {["Bitcoin", "Ethereum", "Dogecoin"][index-1]} - Неизбежный взлет!
+                {["Bitcoin", "Ethereum", "Dogecoin"][index-1]} - Inevitable Rise!
               </h3>
               <p className="text-sm text-gray-400 mb-3">
-                "Я абсолютно уверен, что это лучшая инвестиционная возможность десятилетия..."
+                "I am absolutely certain that this is the best investment opportunity of the decade..."
               </p>
               <div className="text-right text-purple-400 text-sm italic">
-                - КриптоГуру{Math.floor(Math.random() * 9000) + 1000}
+                - CryptoGuru{Math.floor(Math.random() * 9000) + 1000}
               </div>
             </div>
           ))}
@@ -254,7 +254,7 @@ const RetroactivePredictions = () => {
         
         <div className="text-center mt-6">
           <button className="text-purple-400 hover:text-purple-300 transition">
-            Показать больше "гениальных" прогнозов из прошлого
+            Show more "genius" forecasts from the past
           </button>
         </div>
       </div>

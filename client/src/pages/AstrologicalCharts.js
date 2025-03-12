@@ -29,7 +29,7 @@ const AstrologicalCharts = () => {
     { id: 'year', name: '365 Days' }
   ];
 
-  // Оборачиваем getRandomData в useCallback
+  // Wrap getRandomData in useCallback
   const getRandomData = useCallback(() => {
     const data = [];
     const days = timeframe === 'week' ? 7 : 
@@ -41,13 +41,13 @@ const AstrologicalCharts = () => {
     let marsEnergy = 30 + Math.random() * 40;
     
     for (let i = 0; i < days; i++) {
-      // Симуляция цены с волатильностью
+      // Price simulation with volatility
       price = price + (Math.random() * 10 - 5);
-      // Случайное колебание "астрологических" факторов
+      // Random fluctuation of "astrological" factors
       moonInfluence = Math.max(0, Math.min(100, moonInfluence + (Math.random() * 10 - 5)));
       marsEnergy = Math.max(0, Math.min(100, marsEnergy + (Math.random() * 8 - 4)));
       
-      // Симуляция "событий" для добавления точек внимания
+      // Simulation of "events" to add points of interest
       const hasAstroEvent = Math.random() > 0.9;
       
       data.push({
@@ -62,7 +62,7 @@ const AstrologicalCharts = () => {
     return data;
   }, [timeframe]);
 
-  // Теперь loadChartData может корректно включить getRandomData в зависимости
+  // Now loadChartData can correctly include getRandomData in dependencies
   const loadChartData = useCallback(async () => {
     setLoading(true);
     try {
@@ -71,24 +71,24 @@ const AstrologicalCharts = () => {
       setAstrologicalFactors(result.astrologicalFactors);
     } catch (error) {
       console.error('Error loading chart data:', error);
-      // Используем заглушку в случае ошибки
+      // Use fallback in case of error
       setChartData(getRandomData());
       setAstrologicalFactors([
         {
-          name: "Лунная ретикуляция",
-          description: "Луна в третьем доме создает идеальную энергетическую матрицу для роста цены.",
+          name: "Lunar Reticulation",
+          description: "The Moon in the third house creates a perfect energy matrix for price growth.",
           impact: "strongly positive",
           probability: 78
         },
         {
-          name: "Марсианский разворот",
-          description: "Марс движется ретроградно, что указывает на потенциальную волатильность.",
+          name: "Martian Reversal",
+          description: "Mars is moving retrograde, indicating potential volatility.",
           impact: "negative",
           probability: 65
         },
         {
-          name: "Венерианская конвергенция",
-          description: "Венера формирует трин с Юпитером, создавая благоприятный аспект для инвесторов.",
+          name: "Venusian Convergence",
+          description: "Venus forms a trine with Jupiter, creating a favorable aspect for investors.",
           impact: "positive",
           probability: 82
         }
@@ -103,8 +103,8 @@ const AstrologicalCharts = () => {
   }, [loadChartData]);
 
   const getPlanetIcon = (factor) => {
-    if (factor.name.toLowerCase().includes('лун')) return <MoonIcon className="h-6 w-6 text-blue-400" />;
-    if (factor.name.toLowerCase().includes('солнц') || factor.name.toLowerCase().includes('солнеч')) 
+    if (factor.name.toLowerCase().includes('lunar')) return <MoonIcon className="h-6 w-6 text-blue-400" />;
+    if (factor.name.toLowerCase().includes('sun') || factor.name.toLowerCase().includes('solar')) 
       return <SunIcon className="h-6 w-6 text-yellow-500" />;
     return <StarIcon className="h-6 w-6 text-purple-400" />;
   };
@@ -126,13 +126,13 @@ const AstrologicalCharts = () => {
         <div className="bg-gray-800 border border-gray-700 p-3 rounded shadow-lg">
           <p className="font-bold text-white">{label}</p>
           <p className="text-green-400">
-            Цена: ${payload[0].value.toFixed(2)}
+            Price: ${payload[0].value.toFixed(2)}
           </p>
           <p className="text-blue-400">
-            Лунное влияние: {payload[1].value.toFixed(1)}%
+            Lunar Influence: {payload[1].value.toFixed(1)}%
           </p>
           <p className="text-red-400">
-            Марсианская энергия: {payload[2].value.toFixed(1)}%
+            Martian Energy: {payload[2].value.toFixed(1)}%
           </p>
           {payload[0].payload.astroEvent && (
             <p className="text-purple-400 font-bold mt-1">
@@ -149,12 +149,12 @@ const AstrologicalCharts = () => {
     <div className="astrological-charts">
       <h1 className="text-3xl font-bold mb-6 text-purple-400">ASStrological Charts</h1>
       <p className="text-lg mb-8 text-gray-300">
-        Где астрология встречается с техническим анализом в идеальном союзе абсурда
+        Where astrology meets technical analysis in a perfect union of absurdity
       </p>
       
       <div className="controls mb-6 flex flex-wrap gap-4">
         <div className="crypto-selector">
-          <label className="block text-sm font-medium text-gray-400 mb-2">Выберите криптовалюту:</label>
+          <label className="block text-sm font-medium text-gray-400 mb-2">Select cryptocurrency:</label>
           <select 
             value={selectedCrypto}
             onChange={(e) => setSelectedCrypto(e.target.value)}
@@ -167,7 +167,7 @@ const AstrologicalCharts = () => {
         </div>
         
         <div className="timeframe-selector">
-          <label className="block text-sm font-medium text-gray-400 mb-2">Временной период:</label>
+          <label className="block text-sm font-medium text-gray-400 mb-2">Time period:</label>
           <select 
             value={timeframe}
             onChange={(e) => setTimeframe(e.target.value)}
@@ -191,7 +191,7 @@ const AstrologicalCharts = () => {
         ) : chartData ? (
           <div className="relative">
             <div className="text-xs text-gray-500 italic absolute top-0 right-0">
-              *Совершенно научно
+              *Completely scientific
             </div>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart
@@ -223,7 +223,7 @@ const AstrologicalCharts = () => {
                   stroke="#34D399" 
                   fillOpacity={1} 
                   fill="url(#priceGradient)" 
-                  name="Цена ($)"
+                  name="Price ($)"
                 />
                 <Area 
                   type="monotone" 
@@ -231,7 +231,7 @@ const AstrologicalCharts = () => {
                   stroke="#60A5FA" 
                   fillOpacity={0.3} 
                   fill="url(#moonGradient)" 
-                  name="Лунное влияние (%)"
+                  name="Lunar Influence (%)"
                 />
                 <Area 
                   type="monotone" 
@@ -239,21 +239,21 @@ const AstrologicalCharts = () => {
                   stroke="#F87171" 
                   fillOpacity={0.3} 
                   fill="url(#marsGradient)" 
-                  name="Марсианская энергия (%)"
+                  name="Martian Energy (%)"
                 />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-400">Не удалось связаться с космическими силами</p>
-            <p className="text-sm text-gray-500 mt-2">Звезды сегодня не в настроении</p>
+            <p className="text-xl text-gray-400">Failed to connect with cosmic forces</p>
+            <p className="text-sm text-gray-500 mt-2">The stars are not in the mood today</p>
           </div>
         )}
       </div>
       
       <div className="astrological-factors">
-        <h2 className="text-xl font-bold mb-4 text-purple-300">Астрологические факторы влияния</h2>
+        <h2 className="text-xl font-bold mb-4 text-purple-300">Astrological Influence Factors</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {astrologicalFactors.map((factor, index) => (
@@ -267,10 +267,10 @@ const AstrologicalCharts = () => {
               
               <div className="flex justify-between items-center">
                 <span className={`font-medium ${getImpactColor(factor.impact)}`}>
-                  Влияние: {factor.impact}
+                  Impact: {factor.impact}
                 </span>
                 <span className="text-yellow-400 font-medium">
-                  {factor.probability}% уверенность
+                  {factor.probability}% confidence
                 </span>
               </div>
             </div>
@@ -279,30 +279,30 @@ const AstrologicalCharts = () => {
       </div>
       
       <div className="mt-10 bg-gray-800 p-6 rounded-lg">
-        <h2 className="text-xl font-bold mb-4 text-purple-300">Астрологический прогноз</h2>
+        <h2 className="text-xl font-bold mb-4 text-purple-300">Astrological Forecast</h2>
         <div className="mb-4 p-4 bg-gray-700 rounded-lg">
           <p className="text-lg italic">
-            "Согласно нашему глубокому анализу планетарных движений и космических энергий, 
-            {selectedCrypto.charAt(0).toUpperCase() + selectedCrypto.slice(1)} находится под 
-            влиянием ретроградного Меркурия в созвездии Рыси-Под-Хвостом. Это однозначно 
-            указывает на {Math.random() > 0.5 ? 'бычий' : 'медвежий'} тренд в ближайшие 
-            {Math.floor(Math.random() * 10) + 1} дней. Инвесторам рекомендуется принимать решения 
-            только при растущей луне и никогда по вторникам."
+            "According to our deep analysis of planetary movements and cosmic energies, 
+            {selectedCrypto.charAt(0).toUpperCase() + selectedCrypto.slice(1)} is under 
+            the influence of retrograde Mercury in the constellation of Lynx-Under-Tail. This clearly 
+            indicates a {Math.random() > 0.5 ? 'bullish' : 'bearish'} trend in the next 
+            {Math.floor(Math.random() * 10) + 1} days. Investors are advised to make decisions 
+            only during the waxing moon and never on Tuesdays."
           </p>
           <div className="flex justify-end">
             <span className="text-purple-400 font-medium">
-              - Профессор Астрономических Финансов, Университет Воображаемых Наук
+              - Professor of Astronomical Finance, University of Imaginary Sciences
             </span>
           </div>
         </div>
         
         <div className="text-center">
           <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full transition">
-            Получить персонализированный астро-прогноз за 100 $ASS
+            Get personalized astro-forecast for 100 $ASS
           </button>
           <p className="text-xs text-gray-500 mt-2">
-            * Результаты могут варьироваться. Не является финансовой рекомендацией. 
-            При создании не пострадало ни одно созвездие.
+            * Results may vary. Not financial advice. 
+            No constellations were harmed in the making of this forecast.
           </p>
         </div>
       </div>

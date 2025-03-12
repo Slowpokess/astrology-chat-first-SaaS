@@ -40,9 +40,9 @@ const HomePage = () => {
               cryptoName: crypto.name,
               cryptoSymbol: crypto.symbol,
               currentPrice: crypto.current_price,
-              sarcasticPrediction: `${crypto.name} будет делать то, что делают все криптовалюты - заставлять инвесторов нервничать и принимать плохие решения.`,
+              sarcasticPrediction: `${crypto.name} will do what all cryptocurrencies do - make investors nervous and take bad decisions.`,
               confidence: 85,
-              analysis: "Основано на непреложном законе FOMO и панических продаж.",
+              analysis: "Based on the immutable law of FOMO and panic selling.",
               timestamp: new Date().toISOString()
             };
           }
@@ -59,9 +59,9 @@ const HomePage = () => {
           cryptoName: "Bitcoin",
           cryptoSymbol: "btc",
           currentPrice: 45000,
-          sarcasticPrediction: "После консультации с нашей группой экспертов-гадалок и изучения внутренностей особенно пророческой курицы, мы можем с уверенностью сказать, что Bitcoin продолжит свою почетную традицию делать абсолютно все прогнозы о его цене неверными. Ожидайте либо параболического роста к вечной славе, либо катастрофического падения к центру Земли.",
+          sarcasticPrediction: "After consulting with our group of fortune-telling experts and examining the entrails of a particularly prophetic chicken, we can confidently say that Bitcoin will continue its honorable tradition of making absolutely all price predictions wrong. Expect either a parabolic rise to eternal glory or a catastrophic fall to the center of the Earth.",
           confidence: 95,
-          analysis: "Космические выравнивания и настроения в Twitter указывают на неизбежную волатильность, что не удивляет абсолютно никого.",
+          analysis: "Cosmic alignments and Twitter sentiments indicate inevitable volatility, which surprises absolutely no one.",
           timestamp: new Date().toISOString()
         },
         {
@@ -69,9 +69,9 @@ const HomePage = () => {
           cryptoName: "Ethereum",
           cryptoSymbol: "eth",
           currentPrice: 3200,
-          sarcasticPrediction: "Наш запатентованный индикатор 'Настроение Виталика' предполагает, что Ethereum продолжит выполнять обещания примерно тогда, когда наступит тепловая смерть вселенной. Между тем, наш прогноз газовых комиссий предсказывает расходы, эквивалентные поездке с небольшой семьей в Диснейленд каждый раз, когда вы хотите поменять токены.",
+          sarcasticPrediction: "Our patented 'Vitalik's Mood' indicator suggests that Ethereum will continue to fulfill its promises around the time when the heat death of the universe occurs. Meanwhile, our gas fee forecast predicts expenses equivalent to a small family trip to Disneyland every time you want to swap tokens.",
           confidence: 72,
-          analysis: "Технический анализ показывает, что рисование фигур на графиках и называние их 'паттернами' по-прежнему так же надежно, как всегда.",
+          analysis: "Technical analysis shows that drawing shapes on charts and calling them 'patterns' is still as reliable as ever.",
           timestamp: new Date().toISOString()
         }
       ]);
@@ -106,9 +106,9 @@ const HomePage = () => {
               cryptoName: crypto.name,
               cryptoSymbol: crypto.symbol,
               currentPrice: crypto.current_price,
-              sarcasticPrediction: `Наши эксперты временно потеряли связь с космосом, но мы можем сказать, что ${crypto.name} будет следовать законам рынка, которые никто не понимает.`,
+              sarcasticPrediction: `Our experts have temporarily lost connection with the cosmos, but we can say that ${crypto.name} will follow market laws that no one understands.`,
               confidence: 75,
-              analysis: "Основано на фазах луны и положении чайных листьев.",
+              analysis: "Based on the phases of the moon and the position of tea leaves.",
               timestamp: new Date().toISOString()
             };
           }
